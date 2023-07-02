@@ -1,6 +1,5 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { t } from '../../i18n'
-import { COMPANY_PATH } from '../../constants'
 import {
   BORDER_COLOR,
   BORDER_STYLE,
@@ -8,7 +7,7 @@ import {
   FONT,
   SIZES,
 } from '../../theme'
-import { StyledLink } from '../StyledLink'
+import { useRouter } from 'expo-router'
 
 interface SearchCompanyProps {
   convertedData: {
@@ -20,10 +19,20 @@ interface SearchCompanyProps {
 }
 
 export const SearchCompany = ({ convertedData, uid }: SearchCompanyProps) => {
+  const router = useRouter()
+
+  console.log('uid', uid)
+
+  const handlePress = () => {
+    setTimeout(() => {
+      router.push(`/company/${uid}`)
+    }, 500)
+  }
+
   return (
-    <StyledLink
+    <TouchableOpacity
       style={styles.container}
-      path={COMPANY_PATH}>
+      onLongPress={handlePress}>
       {convertedData.map(({ title, paragraphOne, paragraphTwo }, index) => {
         return (
           <View
@@ -35,7 +44,7 @@ export const SearchCompany = ({ convertedData, uid }: SearchCompanyProps) => {
           </View>
         )
       })}
-    </StyledLink>
+    </TouchableOpacity>
   )
 }
 

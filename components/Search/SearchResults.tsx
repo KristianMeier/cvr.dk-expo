@@ -38,7 +38,7 @@ export const SearchResults = ({ allCompanies }: SearchResultsProps) => {
             <SearchCompany
               key={index}
               convertedData={convertedData}
-              uid={company.uid}
+              uid={t(company.uid)}
             />
           )
         })}

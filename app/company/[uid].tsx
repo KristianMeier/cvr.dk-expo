@@ -1,7 +1,7 @@
-import { getConvertedCompanyData } from '../utils'
-import contentData from '../constants/database.json'
+import { getConvertedCompanyData } from '../../utils'
+import contentData from '../../constants/database.json'
 import { View, Text, StyleSheet } from 'react-native'
-import { t } from '../i18n'
+import { t } from '../../i18n'
 import {
   BORDER_COLOR,
   BORDER_STYLE,
@@ -9,14 +9,20 @@ import {
   FONT,
   FONTSIZES,
   SIZES,
-} from '../theme'
-import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper'
+} from '../../theme'
+import { SafeAreaViewWrapper } from '../../components/SafeAreaViewWrapper'
+import { useSearchParams } from 'expo-router'
 
 const Company = () => {
+  const params = useSearchParams()
   const companies = contentData.companiesData
-  const selectedCompany = companies[0]
+  const selectedCompany = companies.find(
+    (company) => t(company.uid) === params.uid
+  )
 
+  // @ts-ignore
   const formattedCompany = getConvertedCompanyData(selectedCompany)
+  // @ts-ignore
   const companyName = t(selectedCompany?.companyName)
 
   if (!formattedCompany)
