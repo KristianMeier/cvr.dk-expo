@@ -4,9 +4,11 @@ export const MYACCOUNT_PATH = '/myaccount'
 export const COMPANY_PATH = '/company'
 export const REGISTER_PATH = '/register'
 export const GATED_CONTENT_PATH = '/gatedcontent'
+export const TEST_PATH = '/testpage'
 
 export const navigationData = [
   { path: SEARCH_PATH, text: 'Search' },
   { path: VIRKOPEDIA_PATH, text: 'Virkopedia' },
   { path: MYACCOUNT_PATH, text: 'My Account' },
+  { path: TEST_PATH, text: 'Test Page' },
 ]
