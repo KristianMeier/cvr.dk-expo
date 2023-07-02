@@ -21,7 +21,7 @@ export interface AuthContextProps {
   createTable: () => void
   loginUser: () => void
   registerUser: () => void
-  clearAuthInfo: (path: string) => void
+  clearInputFieldsAndGoTOPath: (path: string) => void
 }
 
 const AuthContext = createContext<AuthContextProps | null>(null)
@@ -135,7 +135,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
         createTable,
         loginUser,
         registerUser,
-        clearAuthInfo: clearInputFieldsAndGoTOPath,
+        clearInputFieldsAndGoTOPath,
       }}>
       {children}
     </AuthContext.Provider>

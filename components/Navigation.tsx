@@ -61,7 +61,7 @@ export const Navigation = () => {
         <FlatList
           data={navigationData}
           renderItem={NavigationItem}
-          keyExtractor={(item) => item.path}
+          keyExtractor={(item) => item.text}
           contentContainerStyle={{ columnGap: SIZES.small }}
           horizontal
         />
