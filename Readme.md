@@ -13,6 +13,9 @@ To understand the basics of Expo and react-native.
 
 ## Instructions
 
-1. npm i
-2. npm start
-3. use Expo Go on your phone or Xcode (macOS) / Android Studio on your laptop.
+1. In rooter folder: npm i
+2. In api golder: npm i
+3. In api folder: npm run dev
+4. In root folder: npm start
+   npm start
+5. use Expo Go on your phone or Xcode (macOS) / Android Studio on your laptop.
