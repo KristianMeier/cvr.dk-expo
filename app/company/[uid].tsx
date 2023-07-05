@@ -12,20 +12,33 @@ import {
 } from '../../theme'
 import { SafeAreaViewWrapper } from '../../components/SafeAreaViewWrapper'
 import { useSearchParams } from 'expo-router'
+import { useEffect, useState } from 'react'
 
 const Company = () => {
   const params = useSearchParams()
   const companies = contentData.companiesData
-  const selectedCompany = companies.find(
-    (company) => t(company.uid) === params.uid
-  )
+  const uid = params.uid
+  // const [selectedCompany, setSelectedCompany] = useState([])
+  // const [formattedCompany, setFormattedCompany] = useState([])
+
+  // useEffect(() => {
+  //   setFormattedCompany(filteredCompany)
+  //   setSelectedCompany(company)
+  //   console.log('company', company)
+  //   console.log('filteredCompany', filteredCompany)
+  //   console.log('selectedCompany', selectedCompany)
+  //   console.log('formattedCompany', formattedCompany)
+  // }, [])
+
+  const company = companies.find((company) => t(company.uid) === uid)
+  const filteredCompany = getConvertedCompanyData(company)
 
   // @ts-ignore
-  const formattedCompany = getConvertedCompanyData(selectedCompany)
-  // @ts-ignore
-  const companyName = t(selectedCompany?.companyName)
 
-  if (!formattedCompany)
+  // @ts-ignore
+  // const companyName = t(selectedCompany?.companyName)
+
+  if (!filteredCompany)
     return (
       <View>
         <Text>{t('companies.nocompanies')}</Text>
@@ -33,10 +46,10 @@ const Company = () => {
     )
 
   return (
-    <SafeAreaViewWrapper header={companyName}>
+    <SafeAreaViewWrapper header="Company Details">
       <View style={styles.companyWrapper}>
         <View style={styles.companyContainer}>
-          {formattedCompany.map(({ title, field }) => (
+          {filteredCompany.map(({ title, field }) => (
             <View key={t(field)}>
               <Text style={styles.title}>{t(title)} </Text>
               <Text>{t(field)} </Text>

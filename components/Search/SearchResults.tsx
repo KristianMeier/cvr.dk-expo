@@ -34,11 +34,13 @@ export const SearchResults = ({ allCompanies }: SearchResultsProps) => {
         {companies.map((company, index) => {
           const convertedData = getConvertedSearchData({ ...company })
 
+          const uid = t(company.uid)
+
           return (
             <SearchCompany
               key={index}
               convertedData={convertedData}
-              uid={t(company.uid)}
+              uid={uid}
             />
           )
         })}

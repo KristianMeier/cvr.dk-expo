@@ -21,18 +21,10 @@ interface SearchCompanyProps {
 export const SearchCompany = ({ convertedData, uid }: SearchCompanyProps) => {
   const router = useRouter()
 
-  console.log('uid', uid)
-
-  const handlePress = () => {
-    setTimeout(() => {
-      router.push(`/company/${uid}`)
-    }, 500)
-  }
-
   return (
     <TouchableOpacity
       style={styles.container}
-      onLongPress={handlePress}>
+      onPress={() => router.push(`/company/${uid}`)}>
       {convertedData.map(({ title, paragraphOne, paragraphTwo }, index) => {
         return (
           <View
