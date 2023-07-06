@@ -25,6 +25,7 @@ To understand the basics of Expo and react-native.
 1. Refactor company into mongoose data
 2. Refactor AuthenticationContext ind i mongoose
 3. Fix dynamic routing
+4. Skriv det i typescript
 
 ## Research (not functionality)
 
@@ -32,3 +33,4 @@ To understand the basics of Expo and react-native.
 2. I have some backend stuff in my frontend ? The 3 utils. Write them into backend?
 3. Should mongoose setup be changed? One server file? Check how to split it.
 4. Is it good design with SafeAreaViewWrapper? Maybe remove the Scrollview as it is not generic for all screen/components.
+5. Fix @ts-ignores

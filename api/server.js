@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const Companies = require('./models/companyModel')
 const app = express()
 const cors = require('cors')
-const Virkopedias = require('./models/virkopadiaModel')
+const Virkopedias = require('./models/virkopediaModel')
 
 app.use(cors())
 
