@@ -19,3 +19,8 @@ To understand the basics of Expo and react-native.
 4. In root folder: npm start
    npm start
 5. use Expo Go on your phone or Xcode (macOS) / Android Studio on your laptop.
+
+## Todo
+
+1. Refactor company into mongoose data
+2. Refactor AuthenticationContext ind i mongoose

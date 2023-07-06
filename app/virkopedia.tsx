@@ -12,7 +12,10 @@ const articles = contentData.virkopediaData
 const Virkopedia = () => {
   const [activeButtonIndex, setActiveButtonIndex] = useState(0)
   const { data } = useFetch(VIRKOPEDIA_ENDPOINT)
+
+  // @ts-ignore
   const title = data[activeButtonIndex]?.title
+  // @ts-ignore
   const content = data[activeButtonIndex]?.content
 
   console.log('data', data)
