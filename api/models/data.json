@@ -67,5 +67,12 @@
       "companyType": "companyTypeFive",
       "status": "companyStatusFive"
     }
+  ],
+  "userData": [
+    { "username": "usernameOne", "password": "passwordOne" },
+    { "username": "usernameTwo", "password": "passwordTwo" },
+    { "username": "usernameThree", "password": "passwordThree" },
+    { "username": "usernameFour", "password": "passwordFour" },
+    { "username": "usernameFive", "password": "passwordFive" }
   ]
 }
