@@ -1,13 +1,10 @@
 import { useState } from 'react'
-import contentData from '../constants/database.json'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { t } from '../i18n'
 import { BORDER_COLOR, BORDER_WIDTH, FONT, FONTSIZES, SIZES } from '../theme'
 import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper'
 import { useFetch } from '../hooks/useFetch'
 import { VIRKOPEDIA_ENDPOINT } from '../constants'
-
-const articles = contentData.virkopediaData
 
 const Virkopedia = () => {
   const [activeButtonIndex, setActiveButtonIndex] = useState(0)
@@ -17,9 +14,6 @@ const Virkopedia = () => {
   const title = data[activeButtonIndex]?.title
   // @ts-ignore
   const content = data[activeButtonIndex]?.content
-
-  console.log('data', data)
-  console.log('articles', articles)
 
   return (
     <SafeAreaViewWrapper header="Virkopedia">

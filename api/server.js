@@ -83,7 +83,8 @@ app.delete('/companies/:id', async (req, res) => {
   }
 })
 
-app.delete('/companies/delete-all', async (req, res) => {
+// This router can't be /companies/delete-all because it will be the same as the /companies/:id router
+app.delete('/companies-delete-all', async (req, res) => {
   try {
     const companies = await Companies.deleteMany({})
     res.status(200).json(companies)
@@ -174,7 +175,8 @@ app.delete('/users/:id', async (req, res) => {
   }
 })
 
-app.delete('/users/delete-all', async (req, res) => {
+// This can't be /users/delete-all because it will be the same as the /users/:id router
+app.delete('/users-delete-all', async (req, res) => {
   try {
     const users = await Users.deleteMany({})
     res.status(200).json(users)

@@ -26,15 +26,20 @@ export const SearchResults = ({ allCompanies }: SearchResultsProps) => {
   }, [searchField])
 
   if (!isCompaniesFound && !isSearchFieldEmpty)
-    return <Text>{t('companiesNoCompanies')}</Text>
+    return (
+      <View>
+        <Text>{t('companiesNoCompanies')}</Text>
+      </View>
+    )
 
   if (isCompaniesFound)
     return (
       <View style={styles.companyWrapper}>
         {companies.map((company, index) => {
           const convertedData = getConvertedSearchData({ ...company })
-
           const uid = t(company.uid)
+
+          console.log('companies', companies)
 
           return (
             <SearchCompany

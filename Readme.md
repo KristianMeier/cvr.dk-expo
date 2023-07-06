@@ -34,3 +34,5 @@ To understand the basics of Expo and react-native.
 3. Should mongoose setup be changed? One server file? Check how to split it.
 4. Is it good design with SafeAreaViewWrapper? Maybe remove the Scrollview as it is not generic for all screen/components.
 5. Fix @ts-ignores
+6. Fix Unexpected text node: . A text node cannot be a child of a <View>.
+7. Fix af dataload på index.ts (frontpage)
