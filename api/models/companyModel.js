@@ -4,12 +4,11 @@ const companiesSchema = mongoose.Schema(
   {
     uid: {
       type: String,
-      required: false,
+      required: true,
+      required: [true, 'Please enter a cvr number'],
     },
     cvrNumber: {
       type: String,
-      required: [false, 'Please enter a cvr number'],
-      //   required: [true, 'Please enter a cvr number'],
     },
     companyName: {
       type: String,
@@ -18,7 +17,6 @@ const companiesSchema = mongoose.Schema(
     address: {
       type: String,
       required: false,
-      //   default: 'copenhagen',
     },
     postNoCity: {
       type: String,
@@ -29,14 +27,6 @@ const companiesSchema = mongoose.Schema(
       required: false,
     },
     status: {
-      type: String,
-      required: false,
-    },
-    title: {
-      type: String,
-      required: false,
-    },
-    content: {
       type: String,
       required: false,
     },

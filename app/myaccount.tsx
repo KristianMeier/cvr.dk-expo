@@ -6,7 +6,7 @@ import { AuthComponent } from '../components/AuthComponent'
 import { View } from 'react-native'
 
 const MyAccount = () => {
-  const { createTable, isLoggedIn, loginUser, clearAuthInfo } =
+  const { createTable, isLoggedIn, loginUser, clearInputFieldsAndGoTOPath } =
     useAuthContext() as AuthContextProps
   const router = useRouter()
 
@@ -22,7 +22,7 @@ const MyAccount = () => {
         header="Log in beneath"
         onPressLeft={() => loginUser()}
         btnTextLeft="Log In"
-        onPressRight={() => clearAuthInfo(REGISTER_PATH)}
+        onPressRight={() => clearInputFieldsAndGoTOPath(REGISTER_PATH)}
         btnTextRight="Go to Register Screen"
       />
     </View>

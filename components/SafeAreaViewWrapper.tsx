@@ -1,6 +1,15 @@
-import { SafeAreaView, StyleSheet, ScrollView, View, Text } from 'react-native'
+import {
+  SafeAreaView,
+  StyleSheet,
+  ScrollView,
+  View,
+  Text,
+  ActivityIndicator,
+} from 'react-native'
 import { Navigation } from './Navigation'
 import { COLORS, FONT, FONTSIZES, SIZES } from '../theme'
+import { VIRKOPEDIA_ENDPOINT } from '../constants'
+import { useFetch } from '../hooks/useFetch'
 
 interface SafeAreaViewWrapperProps {
   children: React.ReactNode
@@ -11,15 +20,26 @@ export const SafeAreaViewWrapper = ({
   children,
   header,
 }: SafeAreaViewWrapperProps) => {
+  const { isLoading, error } = useFetch(VIRKOPEDIA_ENDPOINT)
+
   return (
     <SafeAreaView>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.container}>
-          <Navigation />
-          <Text style={styles.header}>{header}</Text>
-          {children}
-        </View>
-      </ScrollView>
+      {isLoading ? (
+        <ActivityIndicator
+          size="large"
+          color={COLORS.primary}
+        />
+      ) : error ? (
+        <Text>Something went wrong</Text>
+      ) : (
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={styles.container}>
+            <Navigation />
+            <Text style={styles.header}>{header}</Text>
+            {children}
+          </View>
+        </ScrollView>
+      )}
     </SafeAreaView>
   )
 }
