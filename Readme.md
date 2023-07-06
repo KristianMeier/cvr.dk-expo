@@ -22,10 +22,7 @@ To understand the basics of Expo and react-native.
 
 ## Todo
 
-1. Refactor company into mongoose data
-2. Refactor AuthenticationContext ind i mongoose
-3. Fix dynamic routing
-4. Skriv det i typescript
+1. Refactor AuthenticationContext ind i mongoose
 
 ## Research (not functionality)
 
@@ -36,3 +33,7 @@ To understand the basics of Expo and react-native.
 5. Fix @ts-ignores
 6. Fix Unexpected text node: . A text node cannot be a child of a <View>.
 7. Fix af dataload på index.ts (frontpage)
+8. Issues: "cannt find cvrNumber". Replicate: http://localhost:19000/company/billy
+   Then click "Search". Or search for "billy" on frontpage and click on billy.
+   When you go directly to http://localhost:19000/company/billy it works.
+9. Daniel hjælp til typescript'e min backend

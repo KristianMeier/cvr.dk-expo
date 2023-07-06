@@ -39,8 +39,6 @@ export const SearchResults = ({ allCompanies }: SearchResultsProps) => {
           const convertedData = getConvertedSearchData({ ...company })
           const uid = t(company.uid)
 
-          console.log('companies', companies)
-
           return (
             <SearchCompany
               key={index}

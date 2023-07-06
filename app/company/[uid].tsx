@@ -12,31 +12,24 @@ import {
 } from '../../theme'
 import { SafeAreaViewWrapper } from '../../components/SafeAreaViewWrapper'
 import { useSearchParams } from 'expo-router'
-import { useEffect, useState } from 'react'
+import { COMPANIES_ENDPOINT } from '../../constants'
+import { useFetch } from '../../hooks/useFetch'
+
+const companies = contentData.companiesData
 
 const Company = () => {
   const params = useSearchParams()
-  const companies = contentData.companiesData
+  const { data } = useFetch(COMPANIES_ENDPOINT)
   const uid = params.uid
-  // const [selectedCompany, setSelectedCompany] = useState([])
-  // const [formattedCompany, setFormattedCompany] = useState([])
 
-  // useEffect(() => {
-  //   setFormattedCompany(filteredCompany)
-  //   setSelectedCompany(company)
-  //   console.log('company', company)
-  //   console.log('filteredCompany', filteredCompany)
-  //   console.log('selectedCompany', selectedCompany)
-  //   console.log('formattedCompany', formattedCompany)
-  // }, [])
+  console.log('data', data)
+  console.log('companies', companies)
 
   const company = companies.find((company) => t(company.uid) === uid)
+  //@ts-ignore
   const filteredCompany = getConvertedCompanyData(company)
 
-  // @ts-ignore
-
-  // @ts-ignore
-  // const companyName = t(selectedCompany?.companyName)
+  console.log(filteredCompany)
 
   if (!filteredCompany)
     return (

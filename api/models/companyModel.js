@@ -4,7 +4,6 @@ const companiesSchema = mongoose.Schema(
   {
     uid: {
       type: String,
-      required: true,
       required: [true, 'Please enter a cvr number'],
     },
     cvrNumber: {
