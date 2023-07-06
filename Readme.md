@@ -37,3 +37,4 @@ To understand the basics of Expo and react-native.
    Then click "Search". Or search for "billy" on frontpage and click on billy.
    When you go directly to http://localhost:19000/company/billy it works.
 9. Daniel hjælp til typescript'e min backend
+10. Search for "any"

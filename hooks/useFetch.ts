@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 
-export const useFetch = (url) => {
+export const useFetch = (url: string) => {
   const [data, setData] = useState([])
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -20,6 +20,7 @@ export const useFetch = (url) => {
       setData(response.data)
       setIsLoading(false)
     } catch (error) {
+      //@ts-ignore
       setError(error)
       console.log(error)
     } finally {
@@ -31,24 +32,5 @@ export const useFetch = (url) => {
     fetchData()
   }, [])
 
-  // useEffect(() => {
-  //   axios
-  //     .get(endpoint)
-  //     .then((res) => {
-  //       setData(res.data)
-  //     })
-  //     .catch((err) => {
-  //       setError(err)
-  //     })
-  // }, [])
-
   return { data, error, isLoading }
 }
-
-// export const virkopediaData = data.filter(
-//   (company) => company?.title !== undefined
-// )
-
-// export const companyData = data.filter(
-//   (company) => company?.uid !== undefined
-// )
