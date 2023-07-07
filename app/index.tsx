@@ -1,8 +1,14 @@
 import { SearchResults } from '../components/Search/SearchResults'
-import { TextInput, StyleSheet } from 'react-native'
+import { TextInput, StyleSheet, ActivityIndicator } from 'react-native'
 import { t } from '../i18n'
 import { SearchContextProps, useSearchContext } from '../context'
-import { SIZES, BORDER_WIDTH, BORDER_COLOR, BORDER_STYLE } from '../theme'
+import {
+  SIZES,
+  BORDER_WIDTH,
+  BORDER_COLOR,
+  BORDER_STYLE,
+  COLORS,
+} from '../theme'
 import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper'
 import { COMPANIES_ENDPOINT } from '../constants'
 import { useFetch } from '../hooks/useFetch'
@@ -10,7 +16,7 @@ import { useFetch } from '../hooks/useFetch'
 const Index = () => {
   const { searchField, setSearchField } =
     useSearchContext() as SearchContextProps
-  const { data } = useFetch(COMPANIES_ENDPOINT)
+  const { data, isLoading } = useFetch(COMPANIES_ENDPOINT)
 
   return (
     <SafeAreaViewWrapper header={t('searchTitle')}>
@@ -20,7 +26,14 @@ const Index = () => {
         onChangeText={setSearchField}
         placeholder="Write Company Name, Cvr Number or Address"
       />
-      <SearchResults allCompanies={data} />
+      {isLoading ? (
+        <ActivityIndicator
+          size="large"
+          color={COLORS.primary}
+        />
+      ) : (
+        <SearchResults allCompanies={data} />
+      )}
     </SafeAreaViewWrapper>
   )
 }

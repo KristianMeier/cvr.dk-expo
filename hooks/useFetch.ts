@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 
 export const useFetch = (url: string) => {
   const [data, setData] = useState([])
-  const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
 
   const options = {
@@ -20,8 +19,6 @@ export const useFetch = (url: string) => {
       setData(response.data)
       setIsLoading(false)
     } catch (error) {
-      //@ts-ignore
-      setError(error)
       console.log(error)
     } finally {
       setIsLoading(false)
@@ -32,5 +29,5 @@ export const useFetch = (url: string) => {
     fetchData()
   }, [])
 
-  return { data, error, isLoading }
+  return { data, isLoading }
 }

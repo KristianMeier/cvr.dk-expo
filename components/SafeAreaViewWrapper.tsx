@@ -4,12 +4,11 @@ import {
   ScrollView,
   View,
   Text,
-  ActivityIndicator,
+  RefreshControl,
 } from 'react-native'
 import { Navigation } from './Navigation'
 import { COLORS, FONT, FONTSIZES, SIZES } from '../theme'
-import { VIRKOPEDIA_ENDPOINT } from '../constants'
-import { useFetch } from '../hooks/useFetch'
+import { useState, useCallback } from 'react'
 
 interface SafeAreaViewWrapperProps {
   children: React.ReactNode
@@ -20,26 +19,31 @@ export const SafeAreaViewWrapper = ({
   children,
   header,
 }: SafeAreaViewWrapperProps) => {
-  const { isLoading, error } = useFetch(VIRKOPEDIA_ENDPOINT)
+  const [refreshing, setRefreshing] = useState(false)
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true)
+    setTimeout(() => {
+      setRefreshing(false)
+    }, 1000)
+  }, [])
 
   return (
     <SafeAreaView>
-      {isLoading ? (
-        <ActivityIndicator
-          size="large"
-          color={COLORS.primary}
-        />
-      ) : error ? (
-        <Text>Something went wrong</Text>
-      ) : (
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={styles.container}>
-            <Navigation />
-            <Text style={styles.header}>{header}</Text>
-            {children}
-          </View>
-        </ScrollView>
-      )}
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+          />
+        }>
+        <View style={styles.container}>
+          <Navigation />
+          <Text style={styles.header}>{header}</Text>
+          {children}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }
