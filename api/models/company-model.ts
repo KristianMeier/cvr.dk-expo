@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
+import { Schema, model } from 'mongoose'
 
-const companiesSchema = mongoose.Schema(
+const companiesSchema = new Schema(
   {
     uid: {
       type: String,
@@ -35,6 +35,4 @@ const companiesSchema = mongoose.Schema(
   }
 )
 
-const Companies = mongoose.model('Companies', companiesSchema)
-
-module.exports = Companies
+export const Companies = model('Companies', companiesSchema)
