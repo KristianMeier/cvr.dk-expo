@@ -1,9 +1,9 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const app = express()
-const cors = require('cors')
-const loadRoutes = require('./routes')
+import express from 'express'
+import mongoose from 'mongoose'
+import cors from 'cors'
+import { loadRoutes } from './routes'
 
+export const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -23,6 +23,6 @@ mongoose
       console.log(`Node API app is running on port ${port}}`)
     })
   })
-  .catch((error) => {
+  .catch((error: Error) => {
     console.log(error)
   })

@@ -1,8 +1,9 @@
-const companyController = require('./controllers/company-controller')
-const virkopediaController = require('./controllers/virkopedia-controller')
-const userController = require('./controllers/user-controller')
+import { Express } from 'express'
+import { companyController } from './controllers/company-controller'
+import { userController } from './controllers/user-controller'
+import { virkopediaController } from './controllers/virkopedia-controller'
 
-const loadRoutes = (app) => {
+export const loadRoutes = (app: Express) => {
   // Companies
   app.get('/companies', companyController().getCompanies)
   app.get('/companies/:id', companyController().getCompany)
@@ -14,7 +15,10 @@ const loadRoutes = (app) => {
   // Virkopedias
   app.get('/virkopedias', virkopediaController().getVirkopedias)
   app.post('/virkopedias', virkopediaController().createVirkopedias)
-
+  app.delete(
+    '/virkopedias-delete-all',
+    virkopediaController().deleteAllVirkopedias
+  )
   // Users
   app.get('/users', userController().getUsers)
   app.get('/users/:id', userController().getUser)
@@ -23,5 +27,3 @@ const loadRoutes = (app) => {
   app.delete('/users/:id', userController().deleteUser)
   app.delete('/users-delete-all', userController().deleteAllUsers)
 }
-
-module.exports = loadRoutes

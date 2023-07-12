@@ -1,7 +1,8 @@
-const Companies = require('../models/company-model')
+import { Request, Response } from 'express'
+import { Companies } from '../models/company-model'
 
-const companyController = () => ({
-  getCompanies: async (req, res) => {
+export const companyController = () => ({
+  getCompanies: async (req: Request, res: Response) => {
     try {
       const companies = await Companies.find({})
       res.status(200).json(companies)
@@ -10,7 +11,7 @@ const companyController = () => ({
     }
   },
 
-  getCompany: async (req, res) => {
+  getCompany: async (req: Request, res: Response) => {
     try {
       const { id } = req.params
       const company = await Companies.findById(id)
@@ -20,17 +21,17 @@ const companyController = () => ({
     }
   },
 
-  createCompany: async (req, res) => {
+  createCompany: async (req: Request, res: Response) => {
     try {
       const companies = await Companies.create(req.body)
-      res.status(200).json(companies)
+      res.status(201).json(companies)
     } catch (error) {
       console.log(error.message)
       res.status(500).json({ message: error.message })
     }
   },
 
-  updateCompany: async (req, res) => {
+  updateCompany: async (req: Request, res: Response) => {
     try {
       const { id } = req.params
       const companies = await Companies.findByIdAndUpdate(id, req.body)
@@ -46,7 +47,7 @@ const companyController = () => ({
     }
   },
 
-  deleteCompany: async (req, res) => {
+  deleteCompany: async (req: Request, res: Response) => {
     try {
       const { id } = req.params
       const company = await Companies.findByIdAndDelete(id)
@@ -61,7 +62,7 @@ const companyController = () => ({
     }
   },
 
-  deleteAllCompanies: async (req, res) => {
+  deleteAllCompanies: async (req: Request, res: Response) => {
     try {
       const companies = await Companies.deleteMany({})
       res.status(200).json(companies)
@@ -71,5 +72,3 @@ const companyController = () => ({
     }
   },
 })
-
-module.exports = companyController

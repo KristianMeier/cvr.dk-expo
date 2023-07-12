@@ -1,7 +1,8 @@
-const Users = require('../models/user-model')
+import { Request, Response } from 'express'
+import { Users } from '../models/user-model'
 
-const userController = () => ({
-  getUsers: async (req, res) => {
+export const userController = () => ({
+  getUsers: async (req: Request, res: Response) => {
     try {
       const users = await Users.find({})
       res.status(200).json(users)
@@ -10,7 +11,7 @@ const userController = () => ({
     }
   },
 
-  getUser: async (req, res) => {
+  getUser: async (req: Request, res: Response) => {
     try {
       const { id } = req.params
       const users = await Users.findById(id)
@@ -20,17 +21,17 @@ const userController = () => ({
     }
   },
 
-  createUser: async (req, res) => {
+  createUser: async (req: Request, res: Response) => {
     try {
       const users = await Users.create(req.body)
-      res.status(200).json(users)
+      res.status(201).json(users)
     } catch (error) {
       console.log(error.message)
       res.status(500).json({ message: error.message })
     }
   },
 
-  updateUser: async (req, res) => {
+  updateUser: async (req: Request, res: Response) => {
     try {
       const { id } = req.params
       const users = await Users.findByIdAndUpdate(id, req.body)
@@ -46,7 +47,7 @@ const userController = () => ({
     }
   },
 
-  deleteUser: async (req, res) => {
+  deleteUser: async (req: Request, res: Response) => {
     try {
       const { id } = req.params
       const users = await Users.findByIdAndDelete(id)
@@ -55,13 +56,13 @@ const userController = () => ({
           .status(404)
           .json({ message: `cannot find any company with ID ${id}` })
       }
-      res.status(200).json(company)
+      res.status(200).json(users)
     } catch (error) {
       res.status(500).json({ message: error.message })
     }
   },
 
-  deleteAllUsers: async (req, res) => {
+  deleteAllUsers: async (req: Request, res: Response) => {
     try {
       const users = await Users.deleteMany({})
       res.status(200).json(users)
@@ -71,5 +72,3 @@ const userController = () => ({
     }
   },
 })
-
-module.exports = userController
