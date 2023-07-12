@@ -4,7 +4,6 @@ export const VIRKOPEDIA_PATH = '/virkopedia'
 export const MYACCOUNT_PATH = '/myaccount'
 export const REGISTER_PATH = '/register'
 export const GATED_CONTENT_PATH = '/gatedcontent'
-export const TEST_PATH = '/testpage'
 
 // Endpoints
 export const BASE_URL = 'http://localhost:9000'
@@ -15,5 +14,4 @@ export const navigationData = [
   { path: SEARCH_PATH, text: 'Search' },
   { path: VIRKOPEDIA_PATH, text: 'Virkopedia' },
   { path: MYACCOUNT_PATH, text: 'My Account' },
-  { path: TEST_PATH, text: 'Test Page' },
 ]

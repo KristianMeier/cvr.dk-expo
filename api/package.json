@@ -1,15 +1,14 @@
 {
-  "name": "node-api",
+  "name": "cvr.dk-mock-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "the mock api for cvr.dk",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "node server.ts",
     "dev": "nodemon server.ts"
   },
   "keywords": [],
-  "author": "",
+  "author": "kristian",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
@@ -18,9 +17,9 @@
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
     "nodemon": "^2.0.20",
     "ts-node": "^10.9.1",
-    "@types/express": "^4.17.17",
     "typescript": "^5.1.6"
   }
 }

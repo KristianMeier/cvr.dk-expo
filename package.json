@@ -1,4 +1,7 @@
 {
+  "name": "cvr.dk-mock-mobile-app",
+  "version": "1.0.0",
+  "description": "A mock mobile app for cvr.dk",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -42,7 +45,5 @@
     "metro": "0.76.0",
     "metro-resolver": "0.76.0"
   },
-  "name": "kristians-mobile-app",
-  "version": "1.0.0",
   "private": true
 }

@@ -5,6 +5,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import { t } from '../../i18n'
 import { SearchContextProps, useSearchContext } from '../../context'
 import { SearchCompany } from './SearchCompany'
+import { FONT, FONTSIZES, SIZES } from '../../theme'
 
 interface SearchResultsProps {
   allCompanies: CompanyData[]
@@ -27,8 +28,8 @@ export const SearchResults = ({ allCompanies }: SearchResultsProps) => {
 
   if (!isCompaniesFound && !isSearchFieldEmpty)
     return (
-      <View>
-        <Text>{t('companiesNoCompanies')}</Text>
+      <View style={styles.noCompaniesWrapper}>
+        <Text style={styles.noCompaniesText}>{t('companiesNoCompanies')}</Text>
       </View>
     )
 
@@ -56,5 +57,12 @@ export const SearchResults = ({ allCompanies }: SearchResultsProps) => {
 const styles = StyleSheet.create({
   companyWrapper: {
     width: '100%',
+  },
+  noCompaniesText: {
+    fontFamily: FONT.bold,
+    fontSize: FONTSIZES.l,
+  },
+  noCompaniesWrapper: {
+    marginTop: SIZES.medium,
   },
 })
