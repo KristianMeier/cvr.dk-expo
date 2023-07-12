@@ -17,7 +17,7 @@
     "baseUrl": ".",
     "noUnusedLocals": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "app/admin.js"],
   "exclude": ["node_modules"],
   "extends": "expo/tsconfig.base"
 }
