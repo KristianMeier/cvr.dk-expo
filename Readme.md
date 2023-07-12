@@ -1,30 +1,19 @@
+### Release date
+
+Realease date v. 1 is wednesday July 12th 2023.
+
 ### Scope of the App
 
-Make a iOS/Android verison of my portefolio-webapp from 2022, a mockup og www.cvr.dk: https://cvr-krme-v02.netlify.app/. As extra functionality, add translations (da + en) and home-made authentication with expo-sqlite. The authentication in the webapp acccept any combination as username and password.
+The scope of the app is to make a iOS/Android verison of my portefolio-webapp from 2022. The webapp is a mockup og https://www.cvr.dk and can be found here: https://cvr-krme-v02.netlify.app/. As extra functionality, I added translations (da + en) and home-made authentication with expo-sqlite to the mobile app.
 
 ### Purpose of the project
 
-To understand the basics of Expo and react-native.
-
-### Release Candidate 0.1
-
-- Release v. 0.1 does not have dynamic paging for the company results, like the webapp above have. This will be included in Release v. 0.2.
-- Releast v. 0.2 does not include styling. This is probably done using https://tamagui.dev/docs/components/button.
+The purpose of the project is to build a project to later deploy etc. using various combinations of AWS services, with the latter being my focus. As a side benefit, that project will give me an understanding the basics of Expo and react-native as well as learning the MER(R)N stack.
 
 ## Instructions
 
-1. In rooter folder: npm i
-2. In api golder: npm i
+1. In root folder type: npm i
+2. In api folder type: npm i
 3. In api folder: npm run dev
 4. In root folder: npm start
-   npm start
-5. use Expo Go on your phone or Xcode (macOS) / Android Studio on your laptop.
-
-##
-
-2. Add use memos
-3. Fix the border imports.
-
-## Todo
-
-1. Fix @ts-ignores i frontend (kun 1 tilbage).
+5. Use Expo Go on your phone or Xcode (macOS) / Android Studio on your laptop. Alternatively you can press "w" to view the app in a browser on your computer.

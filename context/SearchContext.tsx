@@ -19,7 +19,7 @@ const SearchContext = createContext<SearchContextProps | null>(null)
 export const SearchContextProvider = ({
   children,
 }: SearchContectProviderProps) => {
-  const [companies, setCompanies] = useState([])
+  const [companies, setCompanies] = useState<CompanyData[]>([])
   const [searchField, setSearchField] = useState('')
 
   const isSearchFieldEmpty = searchField === ''
@@ -29,7 +29,6 @@ export const SearchContextProvider = ({
     <SearchContext.Provider
       value={{
         companies,
-        // @ts-ignore
         setCompanies,
         searchField,
         setSearchField,
