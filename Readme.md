@@ -24,4 +24,3 @@ To understand the basics of Expo and react-native.
 
 1. Fix @ts-ignores i frontend
 2. Add use memos
-3. Typescript backend
