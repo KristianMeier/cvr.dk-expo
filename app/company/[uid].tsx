@@ -1,11 +1,5 @@
 import { getConvertedCompanyData } from '../../utils'
-import {
-  View,
-  Text,
-  StyleSheet,
-  ActivityIndicator,
-  TouchableOpacity,
-} from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { t } from '../../i18n'
 import {
   BORDER_COLOR,
@@ -19,15 +13,26 @@ import {
 import { SafeAreaViewWrapper } from '../../components/SafeAreaViewWrapper'
 import { useRouter, useSearchParams } from 'expo-router'
 import { COMPANIES_ENDPOINT, SEARCH_PATH } from '../../constants'
-import { useFetch } from '../../hooks/useFetch'
+import axios from 'axios'
+import { LoadingComponent } from '../../components/LoadingComponent'
+import { useState, useEffect } from 'react'
+import { CompanyData } from '../../types'
 
 const Company = () => {
   const params = useSearchParams()
   const router = useRouter()
-  const { data, isLoading } = useFetch(COMPANIES_ENDPOINT)
+  const [data, setData] = useState<CompanyData[] | null>(null)
+  const isNoData = !data?.length
   const uid = params.uid
 
-  // @ts-ignore
+  useEffect(() => {
+    axios.get(COMPANIES_ENDPOINT).then((response) => {
+      setData(response.data)
+    })
+  }, [])
+
+  if (isNoData) return <LoadingComponent />
+
   const company = data.find((company) => t(company.uid) === uid)
 
   if (!company)
@@ -45,22 +50,14 @@ const Company = () => {
         <Text style={styles.backText}>{t('companiesBackToSearch')}</Text>
       </TouchableOpacity>
       <View style={styles.companyWrapper}>
-        {isLoading ? (
-          <ActivityIndicator
-            size="large"
-            color={COLORS.primary}
-          />
-        ) : (
-          <View style={styles.companyContainer}>
-            {/* @ts-ignore */}
-            {getConvertedCompanyData(company).map(({ title, field }) => (
-              <View key={t(field)}>
-                <Text style={styles.title}>{t(title)} </Text>
-                <Text>{t(field)} </Text>
-              </View>
-            ))}
-          </View>
-        )}
+        <View style={styles.companyContainer}>
+          {getConvertedCompanyData(company).map(({ title, field }) => (
+            <View key={t(field)}>
+              <Text style={styles.title}>{t(title)} </Text>
+              <Text>{t(field)} </Text>
+            </View>
+          ))}
+        </View>
       </View>
     </SafeAreaViewWrapper>
   )

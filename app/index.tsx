@@ -1,22 +1,28 @@
 import { SearchResults } from '../components/Search/SearchResults'
-import { TextInput, StyleSheet, ActivityIndicator } from 'react-native'
+import { TextInput, StyleSheet } from 'react-native'
 import { t } from '../i18n'
 import { SearchContextProps, useSearchContext } from '../context'
-import {
-  SIZES,
-  BORDER_WIDTH,
-  BORDER_COLOR,
-  BORDER_STYLE,
-  COLORS,
-} from '../theme'
+import { SIZES, BORDER_WIDTH, BORDER_COLOR, BORDER_STYLE } from '../theme'
 import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper'
 import { COMPANIES_ENDPOINT } from '../constants'
-import { useFetch } from '../hooks/useFetch'
+import { CompanyData } from '../types'
+import axios from 'axios'
+import { LoadingComponent } from '../components/LoadingComponent'
+import { useState, useEffect } from 'react'
 
 const Index = () => {
   const { searchField, setSearchField } =
     useSearchContext() as SearchContextProps
-  const { data, isLoading } = useFetch(COMPANIES_ENDPOINT)
+  const [data, setData] = useState<CompanyData[] | null>(null)
+  const isNoData = !data?.length
+
+  useEffect(() => {
+    axios.get(COMPANIES_ENDPOINT).then((response) => {
+      setData(response.data)
+    })
+  }, [])
+
+  if (isNoData) return <LoadingComponent />
 
   return (
     <SafeAreaViewWrapper header={t('searchTitle')}>
@@ -26,14 +32,7 @@ const Index = () => {
         onChangeText={setSearchField}
         placeholder="Write Company Name, Cvr Number or Address"
       />
-      {isLoading ? (
-        <ActivityIndicator
-          size="large"
-          color={COLORS.primary}
-        />
-      ) : (
-        <SearchResults allCompanies={data} />
-      )}
+      <SearchResults allCompanies={data} />
     </SafeAreaViewWrapper>
   )
 }

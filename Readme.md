@@ -20,7 +20,11 @@ To understand the basics of Expo and react-native.
    npm start
 5. use Expo Go on your phone or Xcode (macOS) / Android Studio on your laptop.
 
+##
+
+2. Add use memos
+3. Fix the border imports.
+
 ## Todo
 
-1. Fix @ts-ignores i frontend
-2. Add use memos
+1. Fix @ts-ignores i frontend (kun 1 tilbage).

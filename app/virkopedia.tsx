@@ -1,70 +1,61 @@
-import { useState } from 'react'
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  ActivityIndicator,
-} from 'react-native'
+import { useEffect, useState } from 'react'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { t } from '../i18n'
-import {
-  BORDER_COLOR,
-  BORDER_WIDTH,
-  COLORS,
-  FONT,
-  FONTSIZES,
-  SIZES,
-} from '../theme'
+import { BORDER_COLOR, BORDER_WIDTH, FONT, FONTSIZES, SIZES } from '../theme'
 import { SafeAreaViewWrapper } from '../components/SafeAreaViewWrapper'
-import { useFetch } from '../hooks/useFetch'
+import axios from 'axios'
 import { VIRKOPEDIA_ENDPOINT } from '../constants'
+import { LoadingComponent } from '../components/LoadingComponent'
+
+interface VirkopediaProps {
+  title: string
+  content: string
+}
 
 const Virkopedia = () => {
   const [activeButtonIndex, setActiveButtonIndex] = useState(0)
-  const { data, isLoading } = useFetch(VIRKOPEDIA_ENDPOINT)
+  const [data, setData] = useState<VirkopediaProps[] | null>(null)
+  const isNoData = !data?.length
 
-  // @ts-ignore
+  useEffect(() => {
+    axios.get(VIRKOPEDIA_ENDPOINT).then((response) => {
+      setData(response.data)
+    })
+  }, [])
+
+  if (isNoData) return <LoadingComponent />
+
   const title = data[activeButtonIndex]?.title
-  // @ts-ignore
   const content = data[activeButtonIndex]?.content
 
   return (
     <SafeAreaViewWrapper header="Virkopedia">
-      {isLoading ? (
-        <ActivityIndicator
-          size="large"
-          color={COLORS.primary}
-        />
-      ) : (
-        <>
-          <View>
-            <View style={styles.btnContainer}>
-              {data.map(({ title }, index) => {
-                const isActiveButton = index === activeButtonIndex
-                return (
-                  <TouchableOpacity
-                    key={t(title) + index}
-                    onPress={() => setActiveButtonIndex(index)}>
-                    <Text
-                      style={[
-                        styles.buttonText,
-                        {
-                          fontFamily: isActiveButton ? FONT.bold : FONT.regular,
-                        },
-                      ]}>
-                      {t(title)}
-                    </Text>
-                  </TouchableOpacity>
-                )
-              })}
-            </View>
-          </View>
-          <View>
-            <Text style={styles.headline}>{t(title)}</Text>
-            <Text style={styles.text}>{t(content)}</Text>
-          </View>
-        </>
-      )}
+      <View>
+        <View style={styles.btnContainer}>
+          {data.map(({ title }, index) => {
+            const isActiveButton = index === activeButtonIndex
+            return (
+              <TouchableOpacity
+                key={t(title) + index}
+                onPress={() => setActiveButtonIndex(index)}>
+                <Text
+                  style={[
+                    styles.buttonText,
+                    {
+                      fontFamily: isActiveButton ? FONT.bold : FONT.regular,
+                    },
+                  ]}>
+                  {t(title)}
+                </Text>
+              </TouchableOpacity>
+            )
+          })}
+        </View>
+      </View>
+      <View>
+        <Text style={styles.headline}>{t(title)}</Text>
+        <Text style={styles.text}>{t(content)}</Text>
+      </View>
     </SafeAreaViewWrapper>
   )
 }
