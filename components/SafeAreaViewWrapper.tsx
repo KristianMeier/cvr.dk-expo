@@ -1,6 +1,14 @@
-import { SafeAreaView, StyleSheet, ScrollView, View, Text } from 'react-native'
+import {
+  SafeAreaView,
+  StyleSheet,
+  ScrollView,
+  View,
+  Text,
+  RefreshControl,
+} from 'react-native'
 import { Navigation } from './Navigation'
 import { COLORS, FONT, FONTSIZES, SIZES } from '../theme'
+import { useState, useCallback } from 'react'
 
 interface SafeAreaViewWrapperProps {
   children: React.ReactNode
@@ -11,9 +19,25 @@ export const SafeAreaViewWrapper = ({
   children,
   header,
 }: SafeAreaViewWrapperProps) => {
+  const [refreshing, setRefreshing] = useState(false)
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true)
+    setTimeout(() => {
+      setRefreshing(false)
+    }, 1000)
+  }, [])
+
   return (
     <SafeAreaView>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+          />
+        }>
         <View style={styles.container}>
           <Navigation />
           <Text style={styles.header}>{header}</Text>

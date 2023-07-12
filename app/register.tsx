@@ -4,7 +4,7 @@ import { AuthComponent } from '../components/AuthComponent'
 import { useEffect } from 'react'
 
 const Register = () => {
-  const { registerUser, createTable, clearAuthInfo } =
+  const { registerUser, createTable, clearInputFieldsAndGoTOPath } =
     useAuthContext() as AuthContextProps
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const Register = () => {
       header="Register an account"
       onPressLeft={registerUser}
       btnTextLeft="Register User"
-      onPressRight={() => clearAuthInfo(MYACCOUNT_PATH)}
+      onPressRight={() => clearInputFieldsAndGoTOPath(MYACCOUNT_PATH)}
       btnTextRight="Go to Login Screen"
     />
   )

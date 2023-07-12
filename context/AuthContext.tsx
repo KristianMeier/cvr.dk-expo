@@ -53,7 +53,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     Alert.alert('Login Failed', 'Try again', [
       {
         text: 'Ok',
-        onPress: () => clearInputFieldsAndGoTOPath(MYACCOUNT_PATH),
+        onPress: () => clearInputFieldsAndGoToPath(MYACCOUNT_PATH),
       },
     ])
   }
@@ -71,7 +71,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     })
   }
 
-  const clearInputFieldsAndGoTOPath = (path: string) => {
+  const clearInputFieldsAndGoToPath = (path: string) => {
     setUsername('')
     setPassword('')
     router.push(path)
@@ -81,7 +81,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     Alert.alert('Another user with that name', 'Super duper', [
       {
         text: 'Ok',
-        onPress: () => clearInputFieldsAndGoTOPath(REGISTER_PATH),
+        onPress: () => clearInputFieldsAndGoToPath(REGISTER_PATH),
       },
     ])
   }
@@ -90,11 +90,11 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     Alert.alert('Registration Successfull', 'Everything is Ok', [
       {
         text: 'Go to Login Page',
-        onPress: () => clearInputFieldsAndGoTOPath(MYACCOUNT_PATH),
+        onPress: () => clearInputFieldsAndGoToPath(MYACCOUNT_PATH),
       },
       {
         text: 'Register more users',
-        onPress: () => clearInputFieldsAndGoTOPath(REGISTER_PATH),
+        onPress: () => clearInputFieldsAndGoToPath(REGISTER_PATH),
       },
     ])
   }
@@ -135,7 +135,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
         createTable,
         loginUser,
         registerUser,
-        clearInputFieldsAndGoTOPath,
+        clearInputFieldsAndGoTOPath: clearInputFieldsAndGoToPath,
       }}>
       {children}
     </AuthContext.Provider>
